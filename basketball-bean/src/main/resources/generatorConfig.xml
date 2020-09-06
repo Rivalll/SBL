@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--数据库驱动 ，这里你们需要自行修改自己的jar包路径-->
+    <classPathEntry
+            location="/Users/rival/maven/maven-repo/org/postgresql/postgresql/42.2.6/postgresql-42.2.6.jar" />
+
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="true" />
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <!--数据库链接地址账号密码 ,这里你们需要自己修改-->
+        <jdbcConnection driverClass="org.postgresql.Driver"
+                        connectionURL="jdbc:postgresql://47.99.236.28:5432/basketball" userId="postgres"
+                        password="postgres">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <!--生成Model类存放位置 -->
+        <javaModelGenerator targetPackage="basketball"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!--生成映射文件存放位置 -->
+        <!--<sqlMapGenerator targetPackage="sqlMapper"-->
+                         <!--targetProject="src/main/resources">-->
+            <!--<property name="enableSubPackages" value="true" />-->
+        <!--</sqlMapGenerator>-->
+        <!--生成Dao类存放位置 -->
+        <javaClientGenerator type="ANNOTATEDMAPPER"
+                             targetPackage="basketball.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+        <!--生成对应表及类名 tableName对应你的表名，domainObjectName对应你生成的文件前缀名-->
+        <table tableName="consumer" domainObjectName="Consumer">
+            <generatedKey column="id" sqlStatement="id" identity="true"></generatedKey>
+        </table>
+    </context>
+</generatorConfiguration>
+
